@@ -2,7 +2,14 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-
+  { "majutsushi/tagbar", lazy = false },
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
   -- Override plugin definition options
 
   {
@@ -23,6 +30,10 @@ local plugins = {
   },
 
   -- override plugin configs
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = overrides.telescope,
+  },
   {
     "williamboman/mason.nvim",
     opts = overrides.mason,

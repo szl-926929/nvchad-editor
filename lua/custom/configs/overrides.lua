@@ -15,6 +15,7 @@ M.treesitter = {
     "proto",
     "json",
     "yaml",
+    "python",
   },
 
   textobjects = {
@@ -44,9 +45,10 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    -- alpine，mason无法自动安装，已在dockerfile中脚本安装
     -- lua stuff
-    "lua-language-server",
-    "stylua",
+    -- "lua-language-server",
+    -- "stylua",
 
     -- go stuff
     "gopls",
@@ -54,7 +56,7 @@ M.mason = {
 
     -- bash stuff
     "shfmt",
-    "shellcheck"
+    "shellcheck",
   },
 }
 
@@ -62,6 +64,12 @@ M.mason = {
 M.nvimtree = {
   git = {
     enable = true,
+  },
+  -- 关闭文件时自动关闭
+  actions = {
+    open_file = {
+      quit_on_open = false,
+    },
   },
 
   renderer = {
@@ -72,10 +80,47 @@ M.nvimtree = {
       },
     },
   },
+  update_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
 }
 
 M.gitsigns = {
   current_line_blame = true,
+}
+
+M.telescope = {
+  defaults = {
+    mappings = {
+      n = {
+        ["f"] = function(prompt_bufnr)
+          local state = require "telescope.state"
+          local action_state = require "telescope.actions.state"
+          local previewer = action_state.get_current_picker(prompt_bufnr).previewer
+          local status = state.get_status(prompt_bufnr)
+          -- Check if we actually have a previewer and a preview window
+          if type(previewer) ~= "table" or previewer.scroll_fn == nil or status.preview_win == nil then
+            return
+          end
+          previewer:scroll_fn(1)
+        end,
+        ["d"] = function(prompt_bufnr)
+          local state = require "telescope.state"
+          local action_state = require "telescope.actions.state"
+          local previewer = action_state.get_current_picker(prompt_bufnr).previewer
+          local status = state.get_status(prompt_bufnr)
+          -- Check if we actually have a previewer and a preview window
+          if type(previewer) ~= "table" or previewer.scroll_fn == nil or status.preview_win == nil then
+            return
+          end
+          previewer:scroll_fn(-1)
+        end,
+      },
+    },
+  },
 }
 
 return M
