@@ -1,8 +1,13 @@
 local overrides = require "custom.configs.overrides"
+local cmd = vim.cmd
 
 ---@type NvPluginSpec[]
 local plugins = {
-  { "majutsushi/tagbar", lazy = false },
+  -- { "fatih/vim-go", lazy = false },
+  {
+    "majutsushi/tagbar",
+    lazy = false,
+  },
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",

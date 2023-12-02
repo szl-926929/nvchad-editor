@@ -57,11 +57,24 @@ M.mason = {
     -- bash stuff
     "shfmt",
     "shellcheck",
+
+    -- c/cpp stuff
+    "clangd",
+    "clang-format",
   },
 }
 
 -- git support in nvimtree
 M.nvimtree = {
+  --on_attach = function(bufnr)
+  --  local api = require "nvim-tree.api"
+  --  -- default mappings
+  --  api.config.mappings.default_on_attach(bufnr)
+  --  vim.keymap.set("n", "<CR>", function()
+  --    print "xxxx"
+  --    require("nvim-tree.api").node.open.no_window_picker()
+  --  end)
+  --end,
   git = {
     enable = true,
   },
@@ -73,6 +86,16 @@ M.nvimtree = {
   },
 
   renderer = {
+    indent_markers = {
+      enable = true,
+      icons = {
+        corner = "└",
+        edge = "│",
+        item = "│",
+        bottom = "─",
+        none = " ",
+      },
+    },
     highlight_git = true,
     icons = {
       show = {
@@ -119,6 +142,13 @@ M.telescope = {
           previewer:scroll_fn(-1)
         end,
       },
+    },
+    file_ignore_patterns = {
+      "node_modules",
+      ".git/*",
+      "%.zip",
+      "%.exe",
+      "%.dll",
     },
   },
 }

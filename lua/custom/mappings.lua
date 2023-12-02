@@ -2,6 +2,16 @@
 --
 local M = {}
 
+----------------------
+--lsp
+----------------------
+-- K: 显示文档，再次K，进入文档窗口中，q退出
+-- gD: 跳转到声明
+-- gd：跳转到定义
+-- gi: 查找接口的实现
+-- <leader>ra: 一建修改类型名和所有调用的地方，会在bar标签中打开所有修改的文件
+-- gr: 列出调用的地方
+
 M.general = {
   -- n = {
   --   [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -45,15 +55,32 @@ M.hop = {
   },
 }
 
+-- 文件操作
+-- :sp：水平分割窗口打开当前文件
+-- :vsp：垂直窗口打开当前文件
+-- :new 文件名 水平窗口打开新文件
+-- :vnew 文件名 垂直窗口打开新文件
+
 -- sf: 在目录中显示文件
---
 -- t: 在table中打开文件
 -- _: 水平分割显示文件
+-- -: up到上一层
 -- +: 垂直平分割显示文件
 -- a: 创建文件
 -- d: 删除文件
+-- r: 文件重命名
+-- u: 文件路径重命名
+-- R: 刷新
+-- c: 文档拷贝到粘贴板
 M.nvimtree = {
   n = {
+    --["<CR>"] = {
+    --  function()
+    --    print "xxxxxxxx"
+    --    require("nvim-tree.api").node.open.no_window_picker()
+    --  end,
+    --  "open",
+    --},
     -- focus
     ["sf"] = {
       function()
@@ -104,6 +131,7 @@ M.nvimtree = {
       end,
       "Open: Vertical Split",
     },
+    ["<leader>t"] = { ":NvimTreeResize ", "resize tree xxx" },
   },
 }
 
@@ -134,6 +162,12 @@ M.telescope = {
   n = {
     ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     [";fd"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
+  },
+}
+
+M.tabufline = {
+  n = {
+    ["<tab>"] = { "<tab>", "tab" },
   },
 }
 
