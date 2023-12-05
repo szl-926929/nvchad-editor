@@ -11,15 +11,9 @@ local M = {}
 -- gi: 查找接口的实现
 -- <leader>ra: 一建修改类型名和所有调用的地方，会在bar标签中打开所有修改的文件
 -- gr: 列出调用的地方
-
-M.general = {
-  -- n = {
-  --   [";"] = { ":", "enter command mode", opts = { nowait = true } },
-  -- },
-  t = {
-    ["<ESC>"] = { "<C-\\><C-n>", "escape terminal mode", opts = { nowait = true } },
-  },
-}
+-- <leader>d: focus diagnostic, 主要是lint错误信息框
+-- ctrl+w: 光标切出diagnostic
+-- <leader>h：水平终端, esc: ctrl+w，切出终端
 
 -- more keybinds!
 
@@ -132,11 +126,18 @@ M.nvimtree = {
       "Open: Vertical Split",
     },
     ["<leader>t"] = { ":NvimTreeResize ", "resize tree xxx" },
+    ["tl"] = { "<cmd>NvimTreeResize +10<CR>", "nvimtree resize +10" },
+    ["th"] = { "<cmd>NvimTreeResize -10<CR>", "nvimtree resize -10" },
   },
 }
 
 M.general = {
+  t = {
+    ["<ESC>"] = { "<C-\\><C-n>", "escape terminal mode", opts = { nowait = true } },
+  },
   n = {
+    --   [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<leader>d"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "focus diagnostic" },
     ["tc"] = { "<cmd>tabc<CR>", "close current tab" },
     ["t1"] = { "<cmd>tabnext 1<CR>", "choose 1 tab" },
     ["t2"] = { "<cmd>tabnext 2<CR>", "choose 2 tab" },
@@ -147,16 +148,17 @@ M.general = {
   },
 }
 
-M.nvterm = {
-  n = {
-    ["<C-=>"] = {
-      function()
-        require("nvterm.terminal").send("zsh", "horizontal")
-      end,
-      "open terminal in horizontal",
-    },
-  },
-}
+-- M.nvterm = {
+--   n = {
+--     ["<C--"] = {
+--       function()
+--         print "==========="
+--         require("nvterm.terminal").send("zsh", "horizontal")
+--       end,
+--       "open terminal in horizontal",
+--     },
+--   },
+-- }
 
 M.telescope = {
   n = {

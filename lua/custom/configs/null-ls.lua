@@ -19,6 +19,7 @@ local sources = {
   -- Go
   b.formatting.gofumpt,
   b.formatting.goimports,
+  b.formatting.goimports_reviser,
   b.formatting.golines,
 
   -- cpp
