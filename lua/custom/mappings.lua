@@ -14,6 +14,10 @@ local M = {}
 -- <leader>d: focus diagnostic, 主要是lint错误信息框
 -- ctrl+w: 光标切出diagnostic
 -- <leader>h：水平终端, esc: ctrl+w，切出终端
+-- <leader>z：vim窗口全屏
+-- <leader>q: 展示lint提示列表
+-- [d: 上一个lint提示
+-- ]d: 下一个lint提示
 
 -- more keybinds!
 
@@ -76,6 +80,12 @@ M.nvimtree = {
     --  "open",
     --},
     -- focus
+    ["<leader>z"] = {
+      function()
+        require("windex").toggle_nvim_maximize()
+      end,
+      "Toggle Maximize Current Windown",
+    },
     ["sf"] = {
       function()
         local function starts_with(String, Start)

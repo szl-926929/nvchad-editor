@@ -5,6 +5,12 @@ local cmd = vim.cmd
 local plugins = {
   -- { "fatih/vim-go", lazy = false },
   {
+    "declancm/windex.nvim",
+    config = function()
+      require("windex").setup()
+    end,
+  },
+  {
     "majutsushi/tagbar",
     lazy = false,
   },
@@ -13,6 +19,22 @@ local plugins = {
     event = "InsertEnter",
     config = function()
       require("better_escape").setup()
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    lazy = false,
+    event = { "VimEnter" },
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    opts = function()
+      return require "custom.configs.todo-comments"
+    end,
+    config = function(_, opts)
+      require("todo-comments").setup()
+      require("todo-comments").setup(opts)
     end,
   },
   -- Override plugin definition options
