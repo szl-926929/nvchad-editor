@@ -1,5 +1,5 @@
 ---@type MappingsTable
---
+
 local M = {}
 
 ----------------------

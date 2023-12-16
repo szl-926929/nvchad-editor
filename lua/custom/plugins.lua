@@ -38,7 +38,10 @@ local plugins = {
     end,
   },
   -- Override plugin definition options
-
+  {
+        "hrsh7th/nvim-cmp",
+        opts = overrides.cmp,
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {

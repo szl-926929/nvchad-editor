@@ -1,3 +1,9 @@
+local mappings = require "custom.mappings"
+
+local cmp = require "cmp"
+
+dofile(vim.g.base46_cache .. "cmp")
+
 local M = {}
 
 M.treesitter = {
@@ -150,6 +156,13 @@ M.telescope = {
       "%.exe",
       "%.dll",
     },
+  },
+}
+
+M.cmp = {
+  mapping = {
+    ["<Up>"] = cmp.mapping.select_prev_item(),
+    ["<Down>"] = cmp.mapping.select_next_item(),
   },
 }
 
